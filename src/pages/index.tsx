@@ -9,7 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import DashboardLayout from '../components/layouts/dashboardLayout'
 import LoadingScreen from '../components/loadingScreen'
 import styles from '../styles/Home.module.css'
-import { auth, logout } from './util/firebase'
+import { auth, logout } from '../util/firebase'
 import { NextPageWithLayout } from './_app'
 
 const Home: NextPageWithLayout = () => {

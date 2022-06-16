@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LoadingScreen from "../components/loadingScreen";
-import { auth, logInWithEmailAndPassword } from "./util/firebase";
+import { auth, logInWithEmailAndPassword } from "../util/firebase";
 import { FaUser } from 'react-icons/fa'
 import { MdPassword } from 'react-icons/md'
 
@@ -17,7 +17,7 @@ const Login: NextPage = () => {
 
     useEffect(() => {
         if (user) router.push("/");
-    }, [user, loading]);
+    }, [user, loading, router]);
 
     if (loading) {
         return (<LoadingScreen></LoadingScreen>)
