@@ -12,7 +12,7 @@ const DashboardLayout = ({ children, title, description }: { children: ReactElem
     const router = useRouter();
     useEffect(() => {
         if (!loading && !user) router.push("/login");
-    }, [user, loading]);
+    }, [user, loading, router]);
     if (loading || !user) {
         return (<LoadingScreen></LoadingScreen>)
     } else return (

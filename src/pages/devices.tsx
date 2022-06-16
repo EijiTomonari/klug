@@ -42,7 +42,7 @@ const Devices: NextPageWithLayout = () => {
       <Grid templateColumns='repeat(5, 1fr)' gap={6}>
         {devices.map((device, index) => {
           const { name, iconURL } = devices[index];
-          return (<DeviceCard deviceInfo={{ name, iconURL, ...devices[index] }} />)
+          return (<DeviceCard key={index} deviceInfo={{ name, iconURL, ...devices[index] }} />)
         })}
       </Grid>
     </Flex>
