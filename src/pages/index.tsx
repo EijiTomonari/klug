@@ -26,9 +26,7 @@ const Home: NextPageWithLayout = () => {
     <div className={styles.container}>
 
       <main className={styles.main}>
-        <button className="dashboard__btn" onClick={logout}>
-          Logout
-        </button>
+
 
       </main>
 
