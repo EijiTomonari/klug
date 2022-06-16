@@ -1,10 +1,26 @@
+
+import { Center, CircularProgress, Flex } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import router from 'next/router'
+import { useEffect } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import LoadingScreen from '../components/loadingScreen'
 import styles from '../styles/Home.module.css'
+import { auth, logout } from './util/firebase'
 
 const Home: NextPage = () => {
-  return (
+
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (!user) router.push("/login");
+  }, [user, loading]);
+
+  if (loading || !user) {
+    return (<LoadingScreen></LoadingScreen>)
+  } else return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -13,6 +29,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <button className="dashboard__btn" onClick={logout}>
+          Logout
+        </button>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
