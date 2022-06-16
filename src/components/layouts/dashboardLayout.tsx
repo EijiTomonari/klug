@@ -1,10 +1,21 @@
 import { Flex } from "@chakra-ui/react"
 import Head from "next/head"
-import { ReactElement } from "react"
+import { useRouter } from "next/router"
+import { ReactElement, useEffect } from "react"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { auth } from "../../util/firebase"
 import Sidebar from "../home/sideBar"
+import LoadingScreen from "../loadingScreen"
 
 const DashboardLayout = ({ children, title, description }: { children: ReactElement, title: string, description?: string }) => {
-    return (
+    const [user, loading, error] = useAuthState(auth);
+    const router = useRouter();
+    useEffect(() => {
+        if (!user) router.push("/login");
+    }, [user, loading]);
+    if (loading || !user) {
+        return (<LoadingScreen></LoadingScreen>)
+    } else return (
         <Flex>
             <Head>
                 <title>Klug | {title}</title>

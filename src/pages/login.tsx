@@ -2,7 +2,7 @@ import { Button, Center, CircularProgress, Flex, Input, InputGroup, InputLeftAdd
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LoadingScreen from "../components/loadingScreen";
 import { auth, logInWithEmailAndPassword } from "../util/firebase";
@@ -14,6 +14,11 @@ const Login: NextPage = () => {
     const [password, setPassword] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const router = useRouter();
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        logInWithEmailAndPassword(email, password);
+    }
 
     useEffect(() => {
         if (user) router.push("/");
@@ -29,8 +34,9 @@ const Login: NextPage = () => {
                     <title>Klug | Login</title>
                 </Head>
                 <Flex flexDir={'column'} w='100vw' h='100vh' justifyContent='center'>
-                    <Center>
+                    <Center><form onSubmit={handleSubmit}>
                         <Stack spacing={'5'} maxW='15vw'>
+
                             <InputGroup>
                                 <InputLeftElement
                                     pointerEvents='none'
@@ -49,8 +55,9 @@ const Login: NextPage = () => {
                                     onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
                             </InputGroup>
                             <Button colorScheme='blue'
-                                onClick={() => logInWithEmailAndPassword(email, password)}>Login</Button>
-                        </Stack>
+                                type="submit">Login</Button>
+
+                        </Stack></form>
                     </Center>
                 </Flex>
             </Flex >
