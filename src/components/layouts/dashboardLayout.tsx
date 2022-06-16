@@ -11,7 +11,7 @@ const DashboardLayout = ({ children, title, description }: { children: ReactElem
     const [user, loading, error] = useAuthState(auth);
     const router = useRouter();
     useEffect(() => {
-        if (!user) router.push("/login");
+        if (!loading && !user) router.push("/login");
     }, [user, loading]);
     if (loading || !user) {
         return (<LoadingScreen></LoadingScreen>)

@@ -1,4 +1,4 @@
-import { Flex, List, ListIcon, ListItem, UnorderedList, Text, Link, Heading, Button } from "@chakra-ui/react"
+import { Flex, List, ListIcon, ListItem, UnorderedList, Text, Link, Heading, Button, Image } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { MdOutlineDashboard } from "react-icons/md"
 import { BiDevices } from "react-icons/bi"
@@ -10,10 +10,11 @@ const Sidebar = () => {
     const path = router.pathname;
     return (
         <Flex flexDir='column' maxW={'25vw'} minW={'15vw'} p={10} textAlign='center' borderRight={'1px solid #ededed'}>
-            <Heading fontSize={'x-large'} fontWeight='bold'>Klug</Heading>
-            <List spacing={4} pt={20}>
+            <Image src='/logo.png' alt='Klug - Smart home management' width={150} alignSelf='center'
+                objectFit='contain'></Image>
+            <List spacing={4} pt={10}>
                 <ListItem  >
-                    <Link href=''>
+                    <Link href='/'>
                         <Flex flexDir={'row'} alignItems='center' color={path == "/" ? 'blue' : ''}>
                             <ListIcon as={MdOutlineDashboard} />
                             <Text pl={4}>Dashboard</Text>
