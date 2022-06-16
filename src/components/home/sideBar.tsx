@@ -1,7 +1,9 @@
-import { Flex, List, ListIcon, ListItem, UnorderedList, Text, Link, Heading } from "@chakra-ui/react"
+import { Flex, List, ListIcon, ListItem, UnorderedList, Text, Link, Heading, Button } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { MdOutlineDashboard } from "react-icons/md"
 import { BiDevices } from "react-icons/bi"
+import { signOut } from "firebase/auth"
+import { auth } from "../../util/firebase"
 
 const Sidebar = () => {
     const router = useRouter();
@@ -9,8 +11,8 @@ const Sidebar = () => {
     return (
         <Flex flexDir='column' maxW={'25vw'} minW={'15vw'} p={10} textAlign='center' borderRight={'1px solid #ededed'}>
             <Heading fontSize={'x-large'} fontWeight='bold'>Klug</Heading>
-            <List spacing={3} pt={20} pl={25}>
-                <ListItem p={4} >
+            <List spacing={4} pt={20}>
+                <ListItem  >
                     <Link href=''>
                         <Flex flexDir={'row'} alignItems='center' color={path == "/" ? 'blue' : ''}>
                             <ListIcon as={MdOutlineDashboard} />
@@ -18,7 +20,7 @@ const Sidebar = () => {
                         </Flex>
                     </Link>
                 </ListItem>
-                <ListItem p={4}>
+                <ListItem >
                     <Link href='/devices'>
                         <Flex flexDir={'row'} alignItems='center' color={path == "/devices" ? 'blue' : ''}>
                             <ListIcon as={BiDevices} />
@@ -28,6 +30,7 @@ const Sidebar = () => {
                 </ListItem>
 
             </List>
+            <Button colorScheme='blue' mb={10} mt={'auto'} onClick={() => signOut(auth)}>Sign Out</Button>
         </Flex>
     )
 }

@@ -16,13 +16,9 @@ const Home: NextPageWithLayout = () => {
 
   const [user, loading, error] = useAuthState(auth);
 
-  useEffect(() => {
-    if (!user) router.push("/login");
-  }, [user, loading]);
 
-  if (loading || !user) {
-    return (<LoadingScreen></LoadingScreen>)
-  } else return (
+
+  return (
     <div className={styles.container}>
 
       <main className={styles.main}>
